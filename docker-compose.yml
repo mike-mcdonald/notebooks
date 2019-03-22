@@ -1,0 +1,8 @@
+version: "3"
+services:
+  jupyter:
+    image: pbotapps.azurecr.io/jupyter
+    ports:
+      - 8888:8888
+    volumes:
+      - ./work:/home/jovyan/work
