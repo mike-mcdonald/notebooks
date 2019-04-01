@@ -1,1 +1,9 @@
 **/.ipynb_checkpoints/
+/.cache/
+/.config/
+/.local/
+/.ipython/
+/.jupyter/
+/.data/
+/node_modules/
+/.vscode/
