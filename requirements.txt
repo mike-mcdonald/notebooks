@@ -1,3 +1,4 @@
 geopandas
 geoplot
 overpy
+psycopg2
