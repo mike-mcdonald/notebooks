@@ -2,3 +2,4 @@ geopandas
 geoplot
 overpy
 psycopg2
+pyodbc
