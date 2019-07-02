@@ -3,11 +3,11 @@ const fs = require('fs');
 const d3 = require('d3-delaunay');
 const turf = require('@turf/turf');
 
-const readJsonFile = function(fileName) {
+const readJsonFile = function (fileName) {
   return JSON.parse(fs.readFileSync(__dirname + fileName));
 };
 
-const generateVoronoi = function({ outputFile, inputFile, bbox }) {
+const generateVoronoi = function ({ outputFile, inputFile, bbox }) {
   let features = readJsonFile(inputFile);
 
   let points = features.features.reduce((prev, curr) => {
@@ -47,11 +47,7 @@ cities.features = cities.features.reduce((prev, curr) => {
 
 bbox = turf.bbox(cities);
 
-generateVoronoi({
-  inputFile: '/../.data/mesh_centroid.geojson',
-  outputFile: '/../.data/mesh_voronoi.geojson',
-  bbox: bbox
-});
+generateVoronoi({ inputFile: '/../.data/meshv2_centroid.geojson', outputFile: '/../.data/meshv2_voronoi.geojson', bbox: bbox });
 
 module.exports = {
   readJsonFile,
