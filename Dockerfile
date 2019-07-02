@@ -2,6 +2,12 @@ FROM jupyter/datascience-notebook:ae5f7e104dd5
 
 USER root
 
+# Use CoP certificates
+COPY ./.certs /usr/local/share/ca-certificates/
+RUN update-ca-certificates
+ENV REQUESTS_CA_BUNDLE /etc/ssl/certs/ca-certificates.crt
+
+
 # Install Microsoft ODBC driver
 RUN buildDeps="\
     gnupg2 \
@@ -13,8 +19,8 @@ RUN buildDeps="\
     && apt-get update \
     && apt-get install -y --no-install-recommends $buildDeps $runDeps \
     && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt/sources.list.d/mssql-release.list \
-    && apt-get update \ 
+    && curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    && apt-get update \
     && ACCEPT_EULA=Y apt-get install -y --no-install-recommends msodbcsql17 \
     && apt-get purge -y --auto-remove $buildDeps
 
