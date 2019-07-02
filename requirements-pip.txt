@@ -1,0 +1,2 @@
+osrm 
+-e git+https://github.com/CityofSantaMonica/mds-provider@master#egg=mds_provider
