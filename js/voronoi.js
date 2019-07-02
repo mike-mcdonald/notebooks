@@ -3,13 +3,11 @@ const fs = require('fs');
 const d3 = require('d3-delaunay');
 const turf = require('@turf/turf');
 
-const readJsonFile = function (fileName) {
-  return JSON.parse(
-    fs.readFileSync(__dirname + fileName)
-  );
-}
+const readJsonFile = function(fileName) {
+  return JSON.parse(fs.readFileSync(__dirname + fileName));
+};
 
-const generateVoronoi = function ({ outputFile, inputFile, bbox }) {
+const generateVoronoi = function({ outputFile, inputFile, bbox }) {
   let features = readJsonFile(inputFile);
 
   let points = features.features.reduce((prev, curr) => {
@@ -29,13 +27,16 @@ const generateVoronoi = function ({ outputFile, inputFile, bbox }) {
     __dirname + outputFile,
     JSON.stringify(turf.featureCollection(features))
   );
-}
+};
 
 const cities = readJsonFile('/../.data/cities.geojson');
 let bbox = turf.bbox(cities);
 
-
-generateVoronoi({ inputFile: '/../.data/combined_filtered_segment_midpoints.geojson', outputFile: '/../.data/segments_voronoi.geojson', bbox: bbox });
+generateVoronoi({
+  inputFile: '/../.data/combined_filtered_segment_midpoints.geojson',
+  outputFile: '/../.data/combined_filtered_segment_voronoi.geojson',
+  bbox: bbox
+});
 
 cities.features = cities.features.reduce((prev, curr) => {
   if (curr.properties.CITYNAME == 'Portland') {
@@ -46,9 +47,13 @@ cities.features = cities.features.reduce((prev, curr) => {
 
 bbox = turf.bbox(cities);
 
-generateVoronoi({ inputFile: '/../.data/mesh_centroid.geojson', outputFile: '/../.data/mesh_voronoi.geojson', bbox: bbox });
+generateVoronoi({
+  inputFile: '/../.data/mesh_centroid.geojson',
+  outputFile: '/../.data/mesh_voronoi.geojson',
+  bbox: bbox
+});
 
 module.exports = {
   readJsonFile,
   generateVoronoi
-}
+};
