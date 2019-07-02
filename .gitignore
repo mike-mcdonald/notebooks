@@ -1,9 +1,11 @@
 **/.ipynb_checkpoints/
 /.cache/
 /.config/
+/.gdal/
 /.local/
 /.ipython/
 /.jupyter/
 /.data/
 /node_modules/
 /.vscode/
+**/private/
