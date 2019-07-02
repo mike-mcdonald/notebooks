@@ -46,7 +46,7 @@ cities.features = cities.features.reduce((prev, curr) => {
 
 bbox = turf.bbox(cities);
 
-generateVoronoi({ inputFile: '/../.data/mesh_centroid.geojson', outputFile: '/../.data/mesh_voronoi.geojson', bbox: bbox });
+generateVoronoi({ inputFile: '/../.data/meshv2_centroid.geojson', outputFile: '/../.data/meshv2_voronoi.geojson', bbox: bbox });
 
 module.exports = {
   readJsonFile,
