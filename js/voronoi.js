@@ -3,11 +3,11 @@ const fs = require('fs');
 const d3 = require('d3-delaunay');
 const turf = require('@turf/turf');
 
-const readJsonFile = function(fileName) {
+const readJsonFile = function (fileName) {
   return JSON.parse(fs.readFileSync(__dirname + fileName));
 };
 
-const generateVoronoi = function({ outputFile, inputFile, bbox }) {
+const generateVoronoi = function ({ outputFile, inputFile, bbox }) {
   let features = readJsonFile(inputFile);
 
   let points = features.features.reduce((prev, curr) => {
