@@ -1,5 +1,6 @@
 **/.ipynb_checkpoints/
 /.cache/
+/.certs/
 /.config/
 /.gdal/
 /.local/
