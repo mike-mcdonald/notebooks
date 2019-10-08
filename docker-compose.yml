@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
   jupyter:
     image: pbotapps.azurecr.io/jupyter
@@ -6,3 +6,6 @@ services:
       - 8888:8888
     volumes:
       - .:/home/jovyan
+  sharedstreets:
+    image: pbotapps.azurecr.io/sharedstreets-api
+    restart: always
