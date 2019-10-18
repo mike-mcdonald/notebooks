@@ -1,4 +1,4 @@
-FROM jupyter/datascience-notebook:ae5f7e104dd5
+FROM jupyter/datascience-notebook:1386e2046833
 
 USER root
 
