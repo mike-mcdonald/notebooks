@@ -1,4 +1,4 @@
-FROM jupyter/datascience-notebook:ae5f7e104dd5
+FROM jupyter/datascience-notebook
 
 USER root
 
@@ -24,11 +24,18 @@ RUN buildDeps="\
     && ACCEPT_EULA=Y apt-get install -y --no-install-recommends msodbcsql17 \
     && apt-get purge -y --auto-remove $buildDeps
 
-USER jovyan
+USER $NB_UID
 
-COPY requirements-conda.txt /tmp
-COPY requirements-pip.txt /tmp
-RUN conda install --yes --file /tmp/requirements-conda.txt && \
-    pip install -r /tmp/requirements-pip.txt && \
+RUN conda install --quiet --yes \
+    'geopandas' \
+    'geoplot' \
+    'overpy' \
+    'proj4=5.2.0' \
+    'psycopg2' \
+    'pyarrow' \
+    'pyodbc' \
+    'pyproj' \
+    && \
+    conda clean --all -f -y && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
