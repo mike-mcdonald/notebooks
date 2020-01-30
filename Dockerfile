@@ -1,4 +1,4 @@
-FROM jupyter/datascience-notebook
+FROM jupyter/datascience-notebook:7a0c7325e470
 
 USER root
 
@@ -29,6 +29,7 @@ USER $NB_UID
 RUN conda install --quiet --yes \
     'geopandas' \
     'geoplot' \
+    'jupyter_client=5.3.1' \
     'overpy' \
     'proj4=5.2.0' \
     'psycopg2' \
