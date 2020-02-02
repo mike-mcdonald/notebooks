@@ -24,12 +24,13 @@ RUN buildDeps="\
     && ACCEPT_EULA=Y apt-get install -y --no-install-recommends msodbcsql17 \
     && apt-get purge -y --auto-remove $buildDeps
 
+COPY .condarc /home/$NB_USER
+
 USER $NB_UID
 
-RUN conda install --quiet --yes \
+RUN conda install -c conda-forge --quiet --yes \
     'geopandas' \
     'geoplot' \
-    'jupyter_client=5.3.1' \
     'overpy' \
     'proj4=5.2.0' \
     'psycopg2' \
