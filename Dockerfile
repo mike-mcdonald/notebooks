@@ -1,4 +1,4 @@
-FROM jupyter/datascience-notebook:7a0c7325e470
+FROM jupyter/datascience-notebook:414b5d749704
 
 USER root
 
@@ -24,19 +24,21 @@ RUN buildDeps="\
     && ACCEPT_EULA=Y apt-get install -y --no-install-recommends msodbcsql17 \
     && apt-get purge -y --auto-remove $buildDeps
 
+RUN conda config --remove channels defaults
 COPY .condarc /home/$NB_USER
+RUN chown $NB_USER:users /home/$NB_USER/.condarc
 
 USER $NB_UID
 
-RUN conda install -c conda-forge --quiet --yes \
+RUN conda install -c conda-forge --override-channels --quiet --yes \
     'geopandas' \
     'geoplot' \
     'overpy' \
-    'proj4=5.2.0' \
     'psycopg2' \
     'pyarrow' \
     'pyodbc' \
-    'pyproj' \
+    # fixes segmentation fault when usin to_crs on GeoSeries
+    'pyproj>2.3.1' \
     && \
     conda clean --all -f -y && \
     fix-permissions $CONDA_DIR && \
