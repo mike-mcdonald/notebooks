@@ -5,7 +5,11 @@ services:
     ports:
       - 8888:8888
     volumes:
-      - .:/home/jovyan
+      - .:/home/jovyan/
+    command:
+      - start.sh
+      - jupyter
+      - lab
   sharedstreets:
     image: pbotapps.azurecr.io/sharedstreets-api
     restart: always
