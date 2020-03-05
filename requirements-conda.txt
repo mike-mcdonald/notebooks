@@ -1,6 +1,0 @@
-geopandas
-geoplot
-overpy
-psycopg2
-pyodbc
-pyproj>2.3
