@@ -1,16 +1,18 @@
 version: '3'
 services:
   jupyter:
-    image: pbotapps.azurecr.io/jupyter
+    build: .
     ports:
       - 8888:8888
     volumes:
+      - ./.config:/home/jovyan/.config
       - ./.data:/home/jovyan/.data
       - ./py:/home/jovyan/py
     command:
       - start.sh
       - jupyter
       - lab
-  sharedstreets:
-    image: pbotapps.azurecr.io/sharedstreets-api
-    restart: always
+# You need the following for working with sharedstreets, so build your own?
+  # sharedstreets:
+  #   image: pbotapps.azurecr.io/sharedstreets-api
+  #   restart: always
